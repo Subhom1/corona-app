@@ -27,6 +27,14 @@ const Home = (props) => {
             <Card main={props.data} title="India" />
           </div>
         </div>
+        <div className="row">
+          <p>
+            Made with ❤️ in India.
+            <br />
+            Powered by Next.js , a react server side framework. <br />
+            github @subhom1
+          </p>
+        </div>
       </div>
 
       <style jsx>{`
