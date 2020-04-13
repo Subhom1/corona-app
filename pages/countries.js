@@ -12,12 +12,10 @@ const Countries = (props) => {
   const [selectedCountry, setSelectedCountry] = useState("");
 
   useEffect(() => {
-    console.log(props.country, "country");
     props.showAllCountryName(props.countryArr);
   }, []);
 
   const handleInputChange = (event) => {
-    console.log(event.target.value, "value");
     setSelectedCountry(event.target.value);
     if (event.target.value != "") {
       getRequest(props.countriesUrl, event.target.value).then((res) => {
@@ -28,7 +26,6 @@ const Countries = (props) => {
     }
   };
   const { confirmed, recovered, deaths } = props.country;
-  console.log(confirmed ? confirmed : false);
   return (
     <Layout>
       <div className="container">
