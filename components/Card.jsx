@@ -1,9 +1,9 @@
-import { connect } from "react-redux";
-const Card = (props) => {
+export default (props) => {
+  console.log(props, "card");
   return (
     <div className="card bg-light mb-3" style={{ width: "100%" }}>
       <div className="card-header">
-        Global
+        {props.title}
         <span
           className="green"
           style={{ fontWeight: "600", color: "#f00", marginLeft: "8px" }}
@@ -44,9 +44,3 @@ const Card = (props) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    main: state.countReducer.main,
-  };
-};
-export default connect(mapStateToProps)(Card);

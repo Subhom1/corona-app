@@ -8,9 +8,9 @@ import Card from "../components/Card";
 
 const Home = (props) => {
   useEffect(() => {
-    // props.showCountryData(country);
+    props.showCountryData(props.data);
   }, []);
-  // console.log(props, "props index");
+
   return (
     <Layout>
       {/* {props.main ? (
@@ -21,9 +21,11 @@ const Home = (props) => {
       <div className="container">
         <div className="row p-5">
           <div className="col-lg-6 d-flex  justify-content-center">
-            <Card />
+            <Card main={props.main} title="Global" />
           </div>
-          <div className="col-lg-6"></div>
+          <div className="col-lg-6 d-flex  justify-content-center">
+            <Card main={props.data} title="India" />
+          </div>
         </div>
       </div>
 
@@ -36,29 +38,30 @@ const Home = (props) => {
   );
 };
 
-// export async function getStaticProps() {
-//   try {
-//     const res = await fetch("https://covid19.mathdro.id/api/countries/usa");
-//     const json = await res.json(); // better use it inside try .. catch
-//     return {
-//       props: {
-//         data: json.confirmed.value,
-//       },
-//     };
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
+export async function getStaticProps() {
+  try {
+    const res = await fetch("https://covid19.mathdro.id/api/countries/india");
+    const json = await res.json(); // better use it inside try .. catch
+    return {
+      props: {
+        data: json,
+      },
+    };
+  } catch (err) {
+    console.error(err);
+  }
+}
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     showCountryData: bindActionCreators(showCountryData, dispatch),
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showCountryData: bindActionCreators(showCountryData, dispatch),
+  };
+};
 const mapStateToProps = (state) => {
   return {
+    country: state.countReducer.country,
     main: state.countReducer.main,
   };
 };
-export default connect(mapStateToProps, null)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 // export default Home;
