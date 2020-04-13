@@ -27,7 +27,7 @@ const Home = (props) => {
             <Card main={props.data} title="India" />
           </div>
         </div>
-        <div className="row">
+        <div className="row p-5">
           <p>
             Made with ❤️ in India.
             <br />
